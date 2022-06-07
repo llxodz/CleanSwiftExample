@@ -12,8 +12,11 @@ class ArticlesRouter {
 
 extension ArticlesRouter: ArticlesRoutingLogic {
     func navigateToDetails(articleId: Int) {
-        let vc = UIStoryboard(name: "ArticleDetailsViewController", bundle: nil).instantiateViewController(withIdentifier: "ArticleDetailsViewController")
+        let storyboard = UIStoryboard.init(name: "ArticleDetailsViewController", bundle: nil)
+        guard let articleVC = storyboard.instantiateViewController(withIdentifier: "ArticleDetailsViewController") as? ArticleDetailsViewController else { return }
         
-        viewController?.present(vc, animated: true, completion: nil)
+        articleVC.router?.dataStore?.articleId = articleId
+        
+        viewController?.present(articleVC, animated: true, completion: nil)
     }
 }
