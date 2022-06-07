@@ -11,7 +11,7 @@ class ArticlesViewController: UIViewController {
     
     // MARK: - Internal vars
     private var interactor: ArticlesBusinessLogic?
-    private var data = [ArticleCellModel]()
+    private var dataToDisplay = [ArticleCellModel]()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -33,6 +33,7 @@ class ArticlesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: ArticleTableViewCell.cellIdentifier)
     }
     
     private func setup() {
@@ -53,16 +54,32 @@ extension ArticlesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleTableViewCell.cellIdentifier, for: indexPath) as? ArticleTableViewCell else { return UITableViewCell() }
+        cell.setup(data: dataToDisplay[indexPath.row])
+        cell.delegate = self
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return dataToDisplay.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ArticlesViewController: ArticleCellDelegate {
+    func didArticleTap(articleId: Int) {
+        print("article tap \(articleId)")
     }
 }
 
 extension ArticlesViewController: ArticlesDisplayLogic {
-    func displayData() {
-        
+    func displayData(data: [ArticleCellModel]) {
+        dataToDisplay.removeAll()
+        dataToDisplay.append(contentsOf: data)
+        tableView.reloadData()
     }
 }
