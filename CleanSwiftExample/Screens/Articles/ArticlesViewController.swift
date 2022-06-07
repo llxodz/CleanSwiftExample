@@ -6,8 +6,10 @@ protocol ArticlesDisplayLogic: AnyObject {
 
 class ArticlesViewController: UIViewController {
     
-    // MARK: - External vars
     @IBOutlet private weak var tableView: UITableView!
+    
+    // MARK: - External vars
+    private(set) var router: ArticlesRoutingLogic?
     
     // MARK: - Internal vars
     private var interactor: ArticlesBusinessLogic?
@@ -40,9 +42,12 @@ class ArticlesViewController: UIViewController {
         let viewController = self
         let presenter = ArticlesPresenter()
         let interactor = ArticlesInteractor()
+        let router = ArticlesRouter()
         interactor.presenter = presenter
         presenter.viewController = viewController
         viewController.interactor = interactor
+        viewController.router = router
+        router.viewController = viewController
     }
 }
 
@@ -72,7 +77,7 @@ extension ArticlesViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ArticlesViewController: ArticleCellDelegate {
     func didArticleTap(articleId: Int) {
-        print("article tap \(articleId)")
+        router?.navigateToDetails(articleId: articleId)
     }
 }
 
