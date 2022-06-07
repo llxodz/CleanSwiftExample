@@ -1,15 +1,17 @@
 import UIKit
 
-protocol ArticlesDisplayLogic {
-    func displayData()
+protocol ArticlesDisplayLogic: AnyObject {
+    func displayData(data: [ArticleCellModel])
 }
 
 class ArticlesViewController: UIViewController {
     
     // MARK: - External vars
+    @IBOutlet private weak var tableView: UITableView!
     
     // MARK: - Internal vars
     private var interactor: ArticlesBusinessLogic?
+    private var dataToDisplay = [ArticleCellModel]()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -23,7 +25,15 @@ class ArticlesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
         interactor?.fetchData()
+    }
+    
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.register(UINib(nibName: "ArticleTableViewCell", bundle: nil), forCellReuseIdentifier: ArticleTableViewCell.cellIdentifier)
     }
     
     private func setup() {
@@ -36,8 +46,40 @@ class ArticlesViewController: UIViewController {
     }
 }
 
-extension ArticlesViewController: ArticlesDisplayLogic {
-    func displayData() {
+// MARK: - UITableViewDataSource & Delegate implementation
+extension ArticlesViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleTableViewCell.cellIdentifier, for: indexPath) as? ArticleTableViewCell else { return UITableViewCell() }
+        cell.setup(data: dataToDisplay[indexPath.row])
+        cell.delegate = self
         
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataToDisplay.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ArticlesViewController: ArticleCellDelegate {
+    func didArticleTap(articleId: Int) {
+        print("article tap \(articleId)")
+    }
+}
+
+extension ArticlesViewController: ArticlesDisplayLogic {
+    func displayData(data: [ArticleCellModel]) {
+        dataToDisplay.removeAll()
+        dataToDisplay.append(contentsOf: data)
+        tableView.reloadData()
     }
 }

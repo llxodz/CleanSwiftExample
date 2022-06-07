@@ -26,13 +26,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Az-On-DER">
+                                <rect key="frame" x="16" y="486" width="382" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Таблица"/>
+                                <connections>
+                                    <action selector="tapTable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FaQ-ti-gRb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Ixo-F5-E5O" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="394" id="0gc-ec-Qu3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ixo-F5-E5O" secondAttribute="trailing" id="CeA-ju-Vdm"/>
+                            <constraint firstItem="4Az-On-DER" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="GKu-p4-4Kp"/>
                             <constraint firstItem="Ixo-F5-E5O" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gnq-Yy-NXo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4Az-On-DER" secondAttribute="trailing" constant="16" id="k1y-4K-d0R"/>
+                            <constraint firstItem="4Az-On-DER" firstAttribute="top" secondItem="Ixo-F5-E5O" secondAttribute="bottom" constant="16" id="u64-RW-hOP"/>
                         </constraints>
                     </view>
                 </viewController>
