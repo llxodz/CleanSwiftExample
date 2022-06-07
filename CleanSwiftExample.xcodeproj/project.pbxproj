@@ -20,6 +20,7 @@
 		338BA756284FFB4700238A8C /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BA754284FFB4700238A8C /* ArticleTableViewCell.swift */; };
 		338BA757284FFB4700238A8C /* ArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 338BA755284FFB4700238A8C /* ArticleTableViewCell.xib */; };
 		338BA759284FFBF800238A8C /* ArticleCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BA758284FFBF800238A8C /* ArticleCellModel.swift */; };
+		338BA75C284FFCB600238A8C /* ArticleBackendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338BA75B284FFCB600238A8C /* ArticleBackendModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		338BA754284FFB4700238A8C /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		338BA755284FFB4700238A8C /* ArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTableViewCell.xib; sourceTree = "<group>"; };
 		338BA758284FFBF800238A8C /* ArticleCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCellModel.swift; sourceTree = "<group>"; };
+		338BA75B284FFCB600238A8C /* ArticleBackendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBackendModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		330CD5F6284EB816007DF952 /* Articles */ = {
 			isa = PBXGroup;
 			children = (
+				338BA75A284FFCA800238A8C /* Models */,
 				338BA751284FFAE200238A8C /* Cells */,
 				330CD5F8284EB85A007DF952 /* ArticlesViewController.swift */,
 				330CD5FA284EB87B007DF952 /* ArticlesViewController.storyboard */,
@@ -110,6 +113,14 @@
 				338BA758284FFBF800238A8C /* ArticleCellModel.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		338BA75A284FFCA800238A8C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				338BA75B284FFCB600238A8C /* ArticleBackendModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +203,7 @@
 				330CD5E5284EB5FF007DF952 /* SceneDelegate.swift in Sources */,
 				338BA756284FFB4700238A8C /* ArticleTableViewCell.swift in Sources */,
 				338BA759284FFBF800238A8C /* ArticleCellModel.swift in Sources */,
+				338BA75C284FFCB600238A8C /* ArticleBackendModel.swift in Sources */,
 				330CD5FD284EB975007DF952 /* ArticlesPresentor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

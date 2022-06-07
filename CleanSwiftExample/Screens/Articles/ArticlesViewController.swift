@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ArticlesDisplayLogic: AnyObject {
-    func displayData()
+    func displayData(data: [ArticleCellModel])
 }
 
 class ArticlesViewController: UIViewController {
@@ -11,7 +11,7 @@ class ArticlesViewController: UIViewController {
     
     // MARK: - Internal vars
     private var interactor: ArticlesBusinessLogic?
-    private var data = [String]()
+    private var data = [ArticleCellModel]()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
